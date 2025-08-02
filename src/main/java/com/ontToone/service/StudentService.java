@@ -13,13 +13,13 @@ public class StudentService {
     StudentRepository studentRepository;
 
     public StudentDTO addStudentDetails(StudentDTO studentDTO){
-        Student student= Mapper.convertDtoToEntity(studentDTO,true);
+        Student student= Mapper.convertStudentDtoToEntity(studentDTO,true);
         studentRepository.save(student);
-        return Mapper.convertEntityToDto(student,true);
+        return Mapper.convertStudentEntityToDto(student,true);
     }
 
     public StudentDTO getStudentById(Long id){
         Student student=studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Invalid student id"));
-        return Mapper.convertEntityToDto(student,true);
+        return Mapper.convertStudentEntityToDto(student,true);
     }
 }

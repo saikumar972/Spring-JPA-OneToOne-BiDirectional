@@ -1,7 +1,7 @@
 package com.ontToone.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,4 +26,11 @@ public class Address {
     private String state;
     @OneToOne(mappedBy = "address",fetch = FetchType.EAGER)
     private Student student;
+
+    public void setStudent(Student student){
+        this.student=student;
+        if(student!=null&& student.getAddress()!=this){
+            student.setAddress(this);
+        }
+    }
 }
